@@ -9,11 +9,9 @@
 /**
  * An enumeration.
  */
-export enum GatewaysEnum {
-  BRAINTREE = "BRAINTREE",
-  DUMMY = "DUMMY",
-  RAZORPAY = "RAZORPAY",
-  STRIPE = "STRIPE",
+export enum AddressTypeEnum {
+  BILLING = "BILLING",
+  SHIPPING = "SHIPPING",
 }
 
 /**
@@ -36,6 +34,13 @@ export enum PaymentChargeStatusEnum {
   NOT_CHARGED = "NOT_CHARGED",
   PARTIALLY_CHARGED = "PARTIALLY_CHARGED",
   PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
+}
+
+export interface AccountInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  defaultBillingAddress?: AddressInput | null;
+  defaultShippingAddress?: AddressInput | null;
 }
 
 export interface AddressInput {

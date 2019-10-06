@@ -2,19 +2,20 @@ import gql from "graphql-tag";
 
 import { checkoutFragment } from "../fragments/checkout";
 
-export const getCheckoutQuery = gql`
+export const checkoutDetails = gql`
   ${checkoutFragment}
-  query getCheckout($token: UUID!) {
+  query CheckoutDetails($token: UUID!) {
     checkout(token: $token) {
       ...Checkout
     }
   }
 `;
 
-export const getUserCheckoutQuery = gql`
+export const userCheckoutDetails = gql`
   ${checkoutFragment}
-  query getUserCheckout {
+  query UserCheckoutDetails {
     me {
+      id
       checkout {
         ...Checkout
       }

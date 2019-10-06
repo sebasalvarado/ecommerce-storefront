@@ -11,7 +11,6 @@ export function CredentialsProvider({
 
   const autoSignIn = async () => {
     const credentials = await navigator.credentials.get({
-      mediation: "optional",
       password: true,
     });
 
@@ -24,7 +23,7 @@ export function CredentialsProvider({
   };
 
   React.useEffect(() => {
-    if (!saleor.isLoggedIn && window.PasswordCredential) {
+    if (!saleor.isLoggedIn() && window.PasswordCredential) {
       autoSignIn();
     }
   }, []);

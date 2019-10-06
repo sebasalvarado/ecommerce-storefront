@@ -18,28 +18,24 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 }
 
 .c1 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.9rem 3.7rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c1:hover {
-  background-color: #42beab;
+  background-color: #06a09e;
   color: #fff;
 }
 
 .c1:active {
-  background-color: #42beab;
+  background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -58,9 +54,6 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
@@ -111,18 +104,14 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 
 .c1 {
   background-color: #fff;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
   padding: 0.9rem 3.7rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  font-family: montserrat;
   cursor: pointer;
   color: #21125e;
+  width: auto;
   box-shadow: inset 0px 0px 0px 3px #21125e;
   border-left: 1px solid #21125e;
   border-right: 1px solid #21125e;
@@ -153,9 +142,6 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
@@ -205,28 +191,24 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
 }
 
 .c1 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c1:hover {
-  background-color: #42beab;
+  background-color: #06a09e;
   color: #fff;
 }
 
 .c1:active {
-  background-color: #42beab;
+  background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -245,9 +227,6 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
