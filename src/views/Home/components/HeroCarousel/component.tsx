@@ -63,7 +63,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ backgroundImage, cat
         return finalContent
     }
      
-    return (<Carousel slidesPerView={1}>
+    return (<Carousel slidesPerView={1}  renderCenterControls={true}>
          {slidesContent()} 
-    </Carousel>)
+        </Carousel>)
 }

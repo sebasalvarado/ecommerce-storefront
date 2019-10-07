@@ -27,11 +27,16 @@ const Page: React.FC<{
       {structuredData(shop)}
     </script>
     <HeroCarousel categories={categories} loading={loading} backgroundImage={backgroundImage} />
-    <ProductsFeatured />
+    <ProductsFeatured title={"NUEVA COLECCIÓN"}/>
     <div className="home-page__categories">
       <div className="container">
-        <h3>Shop by category</h3>
+        <div className="home-page__categories__title">
+          <div className="home-page__categories__title__left_line"></div>
+          <h3>Dama</h3>
+          <div className="home-page__categories__title__right_line"></div>
+        </div>
         <div className="home-page__categories__list">
+          
           {categories.edges.map(({ node: category }) => (
             <div key={category.id}>
               <Link
@@ -50,13 +55,49 @@ const Page: React.FC<{
                     })`,
                   }}
                 />
-                <h3>{category.name}</h3>
+                <h4>{category.name}</h4>
               </Link>
             </div>
           ))}
         </div>
       </div>
     </div>
+    <ProductsFeatured title={"BEST SELLERS"}/>
+    <div className="home-page__categories_men">
+      <div className="container">
+        <div className="home-page__categories_men__title">
+          <div className="home-page__categories_men__title__left_line"></div>
+          <h3>Hombre</h3>
+          <div className="home-page__categories_men__title__right_line"></div>
+        </div>
+        <div className="home-page__categories_men__list">
+          
+          {categories.edges.map(({ node: category }) => (
+            <div key={category.id}>
+              <Link
+                to={generateCategoryUrl(category.id, category.name)}
+                key={category.id}
+              >
+                <div
+                  className={classNames("home-page__categories_men__list__image", {
+                    "home-page__categories_men__image--no-photo": !category.backgroundImage,
+                  })}
+                  style={{
+                    backgroundImage: `url(${
+                      category.backgroundImage
+                        ? category.backgroundImage.url
+                        : noPhotoImg
+                    })`,
+                  }}
+                />
+                <h4>{category.name}</h4>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    <ProductsFeatured title={"DESCUENTOS"}/>
   </>
 );
 
