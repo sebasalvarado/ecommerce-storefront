@@ -1,16 +1,12 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import * as React from "react";
+import NukaCarousel, { CarouselProps } from 'nuka-carousel';
+import * as React from 'react';
+import Media from 'react-media';
+import ReactSVG from 'react-svg';
 
-import NukaCarousel, { CarouselProps } from "nuka-carousel";
-import {
-  mediumScreen,
-  smallScreen
-} from "../../globalStyles/scss/variables.scss";
-
-import Media from "react-media";
-import ReactSVG from "react-svg";
-import arrowImg from "../../images/carousel-arrow.svg";
+import { mediumScreen, smallScreen } from '../../globalStyles/scss/variables.scss';
+import arrowImg from '../../images/carousel-arrow.svg';
 
 interface CarouselType extends CarouselProps {
   children: React.ReactNode;
@@ -48,7 +44,8 @@ const Carousel: React.FC<CarouselType> = ({ children, renderCenterControls, slid
     ...rest,
   };
   const carousel = (slides: number) => (
-    <NukaCarousel slidesToShow={slides} slidesToScroll={slides} {...settings}>
+    <NukaCarousel 
+      slidesToShow={slides} slidesToScroll={slides} {...settings}>
       {children}
     </NukaCarousel>
   );

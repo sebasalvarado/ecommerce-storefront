@@ -1,10 +1,9 @@
 import './scss/index.scss';
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { Carousel, ProductListItem } from '..';
-import { generateProductUrl, maybe } from '../../core/utils';
+import { maybe } from '../../core/utils';
 import { TypedFeaturedProductsQuery } from './queries';
 
 interface ProductsFeaturedProps {
@@ -26,12 +25,9 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <h3>{title}</h3>
                 <Carousel>
                   {products.map(({ node: product }) => (
-                    <Link
-                      to={generateProductUrl(product.id, product.name)}
-                      key={product.id}
-                    >
+                    <a>
                       <ProductListItem product={product} />
-                    </Link>
+                    </a>
                   ))}
                 </Carousel>
               </div>

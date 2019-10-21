@@ -1,5 +1,5 @@
-import React from "react";
-import { register, unregister } from "register-service-worker";
+import React from 'react';
+import { register, unregister } from 'register-service-worker';
 
 export const useServiceWorker = ({ timeout = 1000 }) => {
   const [updateAvailable, setUpdateAvailable] = React.useState<boolean>(false);
