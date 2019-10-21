@@ -4,6 +4,11 @@
   $item-height: 3.7rem;
   max-width: calc(100vw - 5rem);
   width: 30rem;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   &__menu-item {
     border-bottom: 1px solid $gray-light;
@@ -98,6 +103,34 @@
       a {
         color: inherit;
       }
+    }
+  }
+  &__menu-options {
+    &__container {
+      border-bottom: 1px solid $gray-light;
+      height: $item-height;
+      margin-top: 50%;
+      @media (min-height: $medium-mobile-height) {
+        margin-top: 95%;
+      }
+      @media (min-height: $large-mobile-height) {
+        margin-top: 100%;
+      }
+    }
+    &__item {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      padding-left: 0.5rem;
+      &__text {
+        padding: $spacer;
+        color: $base-font-color;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+
     }
   }
 }

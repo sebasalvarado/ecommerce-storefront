@@ -8,9 +8,8 @@ import Media from "react-responsive";
 import { Icon, NavLink } from "@components/atoms";
 import { mediumScreen, smallScreen } from "@styles/constants";
 import { maybe } from "@utils/misc";
-
+import Logo from "images/logo_ponti.png";
 import LogoSmall from "images/logo-small.svg";
-import Logo from "images/logo.svg";
 
 import { Dropdown } from "./Dropdown";
 import * as S from "./styles";

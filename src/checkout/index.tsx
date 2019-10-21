@@ -17,7 +17,7 @@ import { BASE_URL } from "../core/config";
 import { CheckoutContext } from "./context";
 import { Routes } from "./routes";
 
-import logoImg from "../images/logo.svg";
+import logoImg from "../images/logo_ponti.svg";
 
 const CheckoutApp: React.FC = () => (
   <div className="checkout">

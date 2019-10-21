@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export enum OverlayType {
   cart = "cart",
@@ -11,6 +11,7 @@ export enum OverlayType {
   mainMenuNav = "main-menu-nav",
   modal = "modal",
   register = "register",
+  wishlist = "wishlist",
 }
 
 export enum OverlayTheme {

@@ -1,11 +1,8 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-import { TypedQuery } from "../../core/queries";
-import {
-  basicProductFragment,
-  productPricingFragment
-} from "../../views/Product/queries";
-import { FeaturedProducts } from "./types/FeaturedProducts";
+import { TypedQuery } from '../../core/queries';
+import { basicProductFragment, productPricingFragment } from '../../views/Product/queries';
+import { FeaturedProducts } from './types/FeaturedProducts';
 
 export const featuredProducts = gql`
   ${basicProductFragment}
@@ -22,6 +19,11 @@ export const featuredProducts = gql`
               category {
                 id
                 name
+              }
+              images {
+                id
+                sortOrder
+                url
               }
             }
           }

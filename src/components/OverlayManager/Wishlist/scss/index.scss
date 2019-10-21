@@ -1,0 +1,50 @@
+@import "../../../../globalStyles/scss/variables.scss";
+
+.wishlist {
+  width: 25rem;
+  max-width: 100vw;
+
+  .overlay__header {
+    justify-content: initial;
+    margin-left: 1rem;
+
+    &__close-icon {
+      margin-left: auto;
+    }
+  }
+  &__footer {
+    background-color: $gray-light;
+    padding: $spacer;
+    position: absolute;
+    bottom: 0;
+    width: 25rem;
+
+    &__button {
+      margin: 1.3rem auto 1.3rem;
+      text-align: center;
+
+      button {
+        width: 85%;
+      }
+    }
+  }
+
+  &__empty {
+    padding: $spacer * 2 $spacer;
+
+    h4 {
+      font-weight: $bold-font-weight;
+      text-transform: uppercase;
+      margin-bottom: $spacer;
+    }
+
+    p {
+      color: $gray;
+    }
+
+    &__action {
+      text-align: center;
+      margin-top: $spacer;
+    }
+  }
+}

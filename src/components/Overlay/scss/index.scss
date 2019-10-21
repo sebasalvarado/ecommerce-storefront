@@ -13,12 +13,14 @@
 
   &--search,
   &--main-menu-nav {
-    top: 3.55rem;
+    position: absolute;
+    top: 10rem !important;
+    background-color: transparent;
   }
 
   &--search {
     .overlay__right {
-      background-color: transparent;
+      background-color: $gray-light;
       height: auto;
     }
   }

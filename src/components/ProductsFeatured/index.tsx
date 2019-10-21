@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
+import './scss/index.scss';
 
-import { Carousel, ProductListItem } from "..";
-import { generateProductUrl, maybe } from "../../core/utils";
-import { TypedFeaturedProductsQuery } from "./queries";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-import "./scss/index.scss";
+import { Carousel, ProductListItem } from '..';
+import { generateProductUrl, maybe } from '../../core/utils';
+import { TypedFeaturedProductsQuery } from './queries';
 
 interface ProductsFeaturedProps {
   title?: string;
@@ -19,7 +19,6 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
           () => data.shop.homepageCollection.products.edges,
           []
         );
-
         if (products.length) {
           return (
             <div className="products-featured">

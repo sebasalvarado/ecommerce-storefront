@@ -1,13 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Overlay, OverlayContext, OverlayType } from "..";
-import Cart from "./Cart";
-import Login from "./Login";
-import MobileNav from "./MobileNav";
-import Modal from "./Modal";
-import Notification from "./Notification";
-import Password from "./Password";
-import Search from "./Search";
+import { Overlay, OverlayContext, OverlayType } from '..';
+import Cart from './Cart';
+import Login from './Login';
+import MobileNav from './MobileNav';
+import Modal from './Modal';
+import Notification from './Notification';
+import Password from './Password';
+import Search from './Search';
+import Wishlist from './Wishlist';
 
 const OverlayManager: React.FC = () => (
   <OverlayContext.Consumer>
@@ -40,6 +41,8 @@ const OverlayManager: React.FC = () => (
         case OverlayType.mainMenuNav:
           return <Overlay context={overlay} />;
 
+        case OverlayType.wishlist:
+          return <Wishlist overlay={overlay}/>;
         default:
           return null;
       }

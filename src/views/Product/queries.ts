@@ -1,11 +1,8 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-import { TypedQuery } from "../../core/queries";
-import {
-  ProductDetails,
-  ProductDetailsVariables
-} from "./types/ProductDetails";
-import { VariantList, VariantListVariables } from "./types/VariantList";
+import { TypedQuery } from '../../core/queries';
+import { ProductDetails, ProductDetailsVariables } from './types/ProductDetails';
+import { VariantList, VariantListVariables } from './types/VariantList';
 
 export const priceFragment = gql`
   fragment Price on TaxedMoney {

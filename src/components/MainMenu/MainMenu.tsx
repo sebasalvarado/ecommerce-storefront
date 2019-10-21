@@ -1,44 +1,28 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import * as React from "react";
+import { Trans } from '@lingui/react';
+import { useSignOut, useUserDetails } from '@sdk/react';
+import * as React from 'react';
+import Media from 'react-media';
+import { Link } from 'react-router-dom';
+import ReactSVG from 'react-svg';
 
-import {
-  InfoTopBar,
-  MenuDropdown,
-  Offline,
-  Online,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType
-} from "..";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
-import {
-  mediumScreen,
-  smallScreen
-} from "../../globalStyles/scss/variables.scss";
-import { useSignOut, useUserDetails } from "@sdk/react";
-
-import { CartContext } from "../CartProvider/context";
+import { InfoTopBar, MenuDropdown, Offline, Online, OverlayContext, OverlayTheme, OverlayType } from '..';
 import { Icon } from '../../@next/components/atoms';
-import { Link } from "react-router-dom";
-import Media from "react-media";
-import NavDropdown from "./NavDropdown";
-import ReactSVG from "react-svg";
-import { Trans } from "@lingui/react";
-import { TypedMainMenuQuery } from "./queries";
-import cartImg from "../../images/cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
-import hamburgerImg from "../../images/hamburger.svg";
-import logoImg from "../../images/logo.svg";
-import { maybe } from "../../core/utils";
-import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
+import { maybe } from '../../core/utils';
+import { mediumScreen, smallScreen } from '../../globalStyles/scss/variables.scss';
+import cartImg from '../../images/cart.svg';
+import hamburgerHoverImg from '../../images/hamburger-hover.svg';
+import hamburgerImg from '../../images/hamburger.svg';
+import logoImg from '../../images/logo_ponti.png';
+import locationIcon from '../../images/ponti-logos/032-location.svg';
+import searchImg from '../../images/search.svg';
+import userImg from '../../images/user.svg';
+import { accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl } from '../../routes';
+import { CartContext } from '../CartProvider/context';
+import { WishlistContext } from '../WishlistProvider/context';
+import NavDropdown from './NavDropdown';
+import { TypedMainMenuQuery } from './queries';
 
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
@@ -51,6 +35,7 @@ const MainMenu: React.FC = () => {
           <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
               const items = maybe(() => data.shop.navigation.main.items, []);
+              // TODO[sebastian]: Need to add wishlist, Locales, and profile to this section coming from the database
               return (
                 <ul>
                   <li
@@ -79,12 +64,15 @@ const MainMenu: React.FC = () => {
         </div>
         <div className="main-menu__center">
           <Link to={baseUrl}>
-            <ReactSVG path={logoImg} />
+            <div className={"main-menu__logo_img"}>
+              <img src={logoImg}/>
+            </div>
+            {/* <ReactSVG path={logoImg} /> */}
           </Link>
         </div>
         <div className="main-menu__right">
         <ul>
-          <Online>
+              <Online>
                 <Media
                   query={{ minWidth: smallScreen }}
                   render={() => (
@@ -141,9 +129,6 @@ const MainMenu: React.FC = () => {
                     </>
                   )}
                 />
-                <li className="main-menu__icon">
-                  <Icon size={24} name="heart"/>
-                </li>
                 <CartContext.Consumer>
                   {cart => (
                     <li
@@ -179,13 +164,13 @@ const MainMenu: React.FC = () => {
                 onClick={() =>
                   overlayContext.show(OverlayType.search, OverlayTheme.right)
                 }
-              >
-                <Media
-                  query={{ minWidth: mediumScreen }}
-                  render={() => <span>Buscar</span>}
-                />
-                <ReactSVG path={searchImg} />
-              </li>
+                >
+                  <Media
+                    query={{ minWidth: mediumScreen }}
+                    render={() => <span>Buscar</span>}
+                  />
+                  <ReactSVG path={searchImg} />
+                </li>
             </ul>
         </div>
       </>
@@ -196,7 +181,10 @@ const MainMenu: React.FC = () => {
       <>
         <div className="main-menu__left">
           <Link to={baseUrl}>
-            <ReactSVG path={logoImg} />
+            <div className={"main-menu__logo_img"}>
+              <img src={logoImg}/>
+            </div>            
+            {/* <ReactSVG path={logoImg} /> */}
           </Link>
         </div>
         <div className="main-menu__center">
@@ -205,44 +193,11 @@ const MainMenu: React.FC = () => {
                 const items = maybe(() => data.shop.navigation.main.items, []);
                 return (
                   <ul>
-                    {                        
-                      items.map(item => (
-                        <MenuDropdown 
-                          head={
-                            <li className="main-menu__item" key={item.id}>
-                              <NavDropdown overlay={overlayContext} {...item} />
-                            </li>
-                          }
-                          content={
-                            <ul className="main-menu__dropdown">
-                              <li>
-                                <Link to={accountUrl}>
-                                  <Trans id="Mi Cuenta" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to={orderHistoryUrl}>
-                                  <Trans id="Order history" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to={addressBookUrl}>
-                                  <Trans id="Address book" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to={paymentOptionsUrl}>
-                                  Payment options
-                                </Link>
-                              </li>
-                              <li onClick={signOut} data-testid="logout-link">
-                                Log Out
-                              </li>
-                          </ul>
-                          }
-                        />
-                      ))
-                    }
+                    {items.map((item) => (
+                      <li className="main-menu__item" key={item.id}>
+                        <NavDropdown overlay={overlayContext} {...item} />
+                      </li>
+                    ))}
                   </ul>
                 );
               }}
@@ -309,12 +264,32 @@ const MainMenu: React.FC = () => {
                     </>
                   )}
                 />
+                <WishlistContext.Consumer>
+                  {wishlist => (
+                      <li 
+                        className="main-menu__icon main-menu__wishlist"
+                        onClick={() => {
+                          overlayContext.show(
+                            OverlayType.wishlist,
+                            OverlayTheme.right
+                          );
+                        }}
+                      >
+                          <Icon size={24} name="heart"/>
+                          {
+                            wishlist.getQuantity() > 0 ? (
+                              <span className="main-menu__wishlist__quantity">
+                                {wishlist.getQuantity()}
+                              </span>
+                            ): null
+                           }
+                          <p className="main-menu__icon__text">Wishlist</p>
+                      </li>
+                  )}
+                </WishlistContext.Consumer>
+
                 <li className="main-menu__icon">
-                  <Icon size={24} name="heart"/>
-                  <p className="main-menu__icon__text">Wishlist</p>
-                </li>
-                <li className="main-menu__icon">
-                  <Icon size={24} name="tick"/>
+                  <ReactSVG path={locationIcon}/>
                   <p className="main-menu__icon__text">Locales</p>
                 </li>
                 <CartContext.Consumer>

@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import * as React from "react";
-
 import {
   NavLink,
   OverlayContextInterface,
@@ -13,7 +12,7 @@ import { MainMenu_shop_navigation_main_items } from "./types/MainMenu";
 import "./scss/index.scss";
 
 class NavDropdown extends React.PureComponent<
-  MainMenu_shop_navigation_main_items & { overlay: OverlayContextInterface },
+  MainMenu_shop_navigation_main_items & { overlay: OverlayContextInterface, className?: string },
   { active: boolean }
 > {
   state = { active: false };
@@ -43,34 +42,34 @@ class NavDropdown extends React.PureComponent<
     const showDropDown = active && this.hasSubNavigation;
 
     return (
-      <ul
-        className={classNames({
-          "main-menu__nav-dropdown": true,
-          "main-menu__nav-dropdown--active": showDropDown,
-        })}
-        onMouseOver={this.showOverlayHandler}
-        onMouseLeave={this.hideOverlayHandler}
-      >
-        <li>
-          <NavLink item={this.props} onClick={this.hideOverlayHandler} />
-        </li>
-        <li
+        <ul
           className={classNames({
-            "main-menu__nav-dropdown__body": true,
-            "main-menu__nav-dropdown__body--visible": showDropDown,
-          })}
+            "main-menu__nav-dropdown": true,
+            "main-menu__nav-dropdown--active": showDropDown,
+          }, this.props.className)}
+          onMouseOver={this.showOverlayHandler}
+          onMouseLeave={this.hideOverlayHandler}
         >
-          <ul>
-            {children.map((subItem, i) => (
-              <NavItem
-                key={i}
-                hideOverlay={this.hideOverlayHandler}
-                {...subItem}
-              />
-            ))}
-          </ul>
-        </li>
-      </ul>
+          <li>
+            <NavLink item={this.props} onClick={this.hideOverlayHandler} />
+          </li>
+          <li
+            className={classNames({
+              "main-menu__nav-dropdown__body": true,
+              "main-menu__nav-dropdown__body--visible": showDropDown,
+            })}
+          >
+            <ul>
+              {children.map((subItem, i) => (
+                <NavItem
+                  key={i}
+                  hideOverlay={this.hideOverlayHandler}
+                  {...subItem}
+                />
+              ))}
+            </ul>
+          </li>
+        </ul>      
     );
   }
 }

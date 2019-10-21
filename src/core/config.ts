@@ -40,8 +40,8 @@ export const META_DEFAULTS = {
   custom: [],
   description: "PWA Storefront",
 
-  image: `${window.location.origin}${require("../images/logo.svg")}`,
-  title: "Saleor",
+  image: `${window.location.origin}${require("../images/logo_ponti.png")}`,
+  title: "Ponti | Calzado y Accesorios Online",
   type: "website",
   url: window.location.origin,
 };

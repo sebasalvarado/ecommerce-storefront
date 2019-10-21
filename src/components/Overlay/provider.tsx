@@ -53,7 +53,9 @@ class Provider extends React.Component<
   render() {
     return (
       <OverlayContext.Provider value={this.state}>
-        {this.props.children}
+        <>
+          {this.props.children}
+        </>
       </OverlayContext.Provider>
     );
   }

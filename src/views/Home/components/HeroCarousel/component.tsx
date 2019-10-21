@@ -29,12 +29,12 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ backgroundImage, cat
             <div className="home-page__hero-text">
               <div>
                 <span className="home-page__hero__title">
-                  <h1>Final reduction</h1>
+                  <h1>Promoción</h1>
                 </span>
               </div>
               <div>
                 <span className="home-page__hero__title">
-                  <h1>Up to 70% off sale</h1>
+                  <h1>Hasta 70% de descuento</h1>
                 </span>
               </div>
             </div>
@@ -48,7 +48,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ backgroundImage, cat
                     categories.edges[0].node.name
                   )}
                 >
-                  <Button>Shop sale</Button>
+                  <Button>Compra Ahora</Button>
                 </Link>
               )}
             </div>

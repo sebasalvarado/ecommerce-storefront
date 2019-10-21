@@ -5,6 +5,8 @@ import { TypedSecondaryMenuQuery } from "./queries";
 
 import "./scss/index.scss";
 
+
+// const footerData = []
 class Nav extends React.PureComponent {
   render() {
     return (

@@ -1,20 +1,19 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import * as React from "react";
+import classNames from 'classnames';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
+import { ProductsFeatured } from '../../components';
+import { structuredData } from '../../core/SEO/Homepage/structuredData';
+import { generateCategoryUrl } from '../../core/utils';
+import noPhotoImg from '../../images/no-photo.svg';
+import { HeroCarousel } from './components';
 import {
   ProductsList_categories,
   ProductsList_shop,
-  ProductsList_shop_homepageCollection_backgroundImage
-} from "./types/ProductsList";
-
-import { HeroCarousel } from './components';
-import { Link } from "react-router-dom";
-import { ProductsFeatured } from "../../components";
-import classNames from "classnames";
-import { generateCategoryUrl } from "../../core/utils";
-import noPhotoImg from "../../images/no-photo.svg";
-import { structuredData } from "../../core/SEO/Homepage/structuredData";
+  ProductsList_shop_homepageCollection_backgroundImage,
+} from './types/ProductsList';
 
 const Page: React.FC<{
   loading: boolean;
@@ -32,7 +31,7 @@ const Page: React.FC<{
       <div className="container">
         <div className="home-page__categories__title">
           <div className="home-page__categories__title__left_line"></div>
-          <h3>Dama</h3>
+          <h3>Mujer</h3>
           <div className="home-page__categories__title__right_line"></div>
         </div>
         <div className="home-page__categories__list">
