@@ -1,41 +1,34 @@
-import * as React from "react";
+import { NotificationTemplate } from '@components/atoms';
+import { I18nLoader, ServiceWorkerContext, ServiceWorkerProvider } from '@components/containers';
+import { SaleorProvider, useAuth, useUserDetails } from '@sdk/react';
+import { defaultTheme, GlobalStyle } from '@styles';
+import { defaultDataIdFromObject, InMemoryCache } from 'apollo-cache-inmemory';
+import { persistCache } from 'apollo-cache-persist';
+import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { BatchHttpLink } from 'apollo-link-batch-http';
+import { RetryLink } from 'apollo-link-retry';
+import * as React from 'react';
+import { positions, Provider as AlertProvider, useAlert } from 'react-alert';
+import { ApolloProvider } from 'react-apollo';
+import { render } from 'react-dom';
+import { hot } from 'react-hot-loader';
+import { Route, Router, Switch } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { QueryParamProvider } from 'use-query-params';
 
-import { Provider as AlertProvider, positions, useAlert } from "react-alert";
-import { GlobalStyle, defaultTheme } from "@styles";
-import {
-  I18nLoader,
-  ServiceWorkerContext,
-  ServiceWorkerProvider
-} from "@components/containers";
-import { InMemoryCache, defaultDataIdFromObject } from "apollo-cache-inmemory";
-import { OverlayProvider, UserProvider } from "./components";
-import { Route, Router, Switch } from "react-router-dom";
-import { SaleorProvider, useAuth, useUserDetails } from "@sdk/react";
-import { apiUrl, serviceWorkerTimeout } from "./constants";
-import {
-  authLink,
-  invalidTokenLinkWithTokenHandlerComponent
-} from "./core/auth";
-
-import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { ApolloProvider } from "react-apollo";
-import { App } from "./app";
-import { BatchHttpLink } from "apollo-link-batch-http";
-import CartProvider from "./components/CartProvider";
-import CheckoutApp from "./checkout";
-import { CheckoutContext } from "./checkout/context";
-import { CheckoutProvider } from "./checkout/CheckoutProvider";
-import { NotificationTemplate } from "@components/atoms";
-import { RetryLink } from "apollo-link-retry";
-import ShopProvider from "./components/ShopProvider";
-import { ThemeProvider } from "styled-components";
-import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
-import { history } from "./history";
-import { hot } from "react-hot-loader";
-import { languages } from "./languages";
-import { persistCache } from "apollo-cache-persist";
-import { render } from "react-dom";
+import { App } from './app';
+import CheckoutApp from './checkout';
+import { CheckoutProvider } from './checkout/CheckoutProvider';
+import { CheckoutContext } from './checkout/context';
+import { baseUrl as checkoutBaseUrl } from './checkout/routes';
+import { OverlayProvider, UserProvider } from './components';
+import CartProvider from './components/CartProvider';
+import ShopProvider from './components/ShopProvider';
+import { apiUrl, serviceWorkerTimeout } from './constants';
+import { authLink, invalidTokenLinkWithTokenHandlerComponent } from './core/auth';
+import { history } from './history';
+import { languages } from './languages';
 
 const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandlerComponent(
   UserProvider
@@ -130,33 +123,35 @@ const startApp = async () => {
 
     return (
       <Router history={history}>
-        <ApolloProvider client={apolloClient}>
-          <SaleorProvider client={apolloClient}>
-            <ShopProvider>
-              <OverlayProvider>
-                <Checkout>
-                  <CheckoutContext.Consumer>
-                    {checkout => (
-                      <CartProvider
-                        checkout={checkout}
-                        apolloClient={apolloClient}
-                      >
-                        <Switch>
-                          <Route
-                            path={checkoutBaseUrl}
-                            component={CheckoutApp}
-                          />
-                          <Route component={App} />
-                        </Switch>
-                        <Notifications />
-                      </CartProvider>
-                    )}
-                  </CheckoutContext.Consumer>
-                </Checkout>
-              </OverlayProvider>
-            </ShopProvider>
-          </SaleorProvider>
-        </ApolloProvider>
+        <QueryParamProvider ReactRouterRoute={Route}>
+          <ApolloProvider client={apolloClient}>
+            <SaleorProvider client={apolloClient}>
+              <ShopProvider>
+                <OverlayProvider>
+                  <Checkout>
+                    <CheckoutContext.Consumer>
+                      {checkout => (
+                        <CartProvider
+                          checkout={checkout}
+                          apolloClient={apolloClient}
+                        >
+                          <Switch>
+                            <Route
+                              path={checkoutBaseUrl}
+                              component={CheckoutApp}
+                            />
+                            <Route component={App} />
+                          </Switch>
+                          <Notifications />
+                        </CartProvider>
+                      )}
+                    </CheckoutContext.Consumer>
+                  </Checkout>
+                </OverlayProvider>
+              </ShopProvider>
+            </SaleorProvider>
+          </ApolloProvider>
+        </QueryParamProvider>
       </Router>
     );
   });
