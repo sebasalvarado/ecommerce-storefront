@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { useSaleorClient, useSignIn } from "../..";
-import { IProps } from "./types";
+import { useSaleorClient, useSignIn } from '../..';
+import { IProps } from './types';
+
 
 export function CredentialsProvider({
   children,
@@ -12,7 +13,7 @@ export function CredentialsProvider({
   const autoSignIn = async () => {
     const credentials = await navigator.credentials.get({
       password: true,
-    });
+    }) as any;
 
     if (credentials) {
       await signIn({

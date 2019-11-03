@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { SaleorAPI } from "../";
-import { getAuthToken, removeAuthToken } from "../auth";
-import { SaleorContext } from "./context";
+import { SaleorAPI } from '../';
+import { getAuthToken, removeAuthToken } from '../auth';
+import { SaleorContext } from './context';
 
 export function useSaleorClient(): SaleorAPI {
   const saleor = React.useContext(SaleorContext);
@@ -22,7 +22,6 @@ export const useAuth = (
   const [authenticated, setAuthenticated] = React.useState(!!getAuthToken());
   const eventHandler = () => {
     const newState = !!getAuthToken();
-
     if (stateChangeCallback && authenticated !== newState) {
       stateChangeCallback(newState);
     }

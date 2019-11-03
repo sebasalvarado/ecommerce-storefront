@@ -1,31 +1,19 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient, ApolloError, ObservableQuery } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { BatchHttpLink } from "apollo-link-batch-http";
-import { RetryLink } from "apollo-link-retry";
-import { GraphQLError } from "graphql";
-import urljoin from "url-join";
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient, ApolloError, ObservableQuery } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { BatchHttpLink } from 'apollo-link-batch-http';
+import { RetryLink } from 'apollo-link-retry';
+import { GraphQLError } from 'graphql';
+import urljoin from 'url-join';
 
-import { TokenAuth } from "../components/User/types/TokenAuth";
-import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from "./auth";
-import { MUTATIONS } from "./mutations";
-import { QUERIES } from "./queries";
-import { RequireAtLeastOne } from "./tsHelpers";
-import {
-  InferOptions,
-  MapFn,
-  QueryShape,
-  WatchMapFn,
-  WatchQueryData
-} from "./types";
-import {
-  getErrorsFromData,
-  getMappedData,
-  isDataEmpty,
-  mergeEdges
-} from "./utils";
-
-import { UserDetails } from "./queries/types/UserDetails";
+import { TokenAuth } from '../components/User/types/TokenAuth';
+import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from './auth';
+import { MUTATIONS } from './mutations';
+import { QUERIES } from './queries';
+import { UserDetails } from './queries/types/UserDetails';
+import { RequireAtLeastOne } from './tsHelpers';
+import { InferOptions, MapFn, QueryShape, WatchMapFn, WatchQueryData } from './types';
+import { getErrorsFromData, getMappedData, isDataEmpty, mergeEdges } from './utils';
 
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
@@ -335,7 +323,7 @@ export class SaleorAPI {
           return this.firePromise(() => observable.refetch(variables), mapFn);
         },
         setOptions: (options: TOptions) =>
-          this.firePromise(() => observable.setOptions(options), mapFn),
+          this.firePromise(() => observable.setOptions(options as any), mapFn),
         unsubscribe: subscription.unsubscribe.bind(subscription),
       };
     };

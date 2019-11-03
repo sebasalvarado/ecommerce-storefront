@@ -98,6 +98,7 @@
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.16",
     "@types/url-join": "^4.0.0",
+    "@types/webappsec-credential-management": "^0.5.1",
     "apollo-storybook-react": "^0.2.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.8.0",

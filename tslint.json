@@ -1,10 +1,10 @@
 {
   "extends": [
-    "tslint:latest",
     "tslint-config-prettier",
     "tslint-plugin-cypress"
   ],
   "rules": {
+    "no-console": false,
     "ordered-imports": false,
     "interface-name": false,
     "member-access": [true, "no-public"],
@@ -35,5 +35,8 @@
         "esSpecCompliant": true
       }
     ]
+  },
+  "jsRules": {
+    "no-console": false
   }
 }

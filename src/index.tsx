@@ -1,6 +1,6 @@
 import { NotificationTemplate } from '@components/atoms';
-import { I18nLoader, ServiceWorkerContext, ServiceWorkerProvider } from '@components/containers';
-import { SaleorProvider, useAuth, useUserDetails } from '@sdk/react';
+import { I18nLoader, ServiceWorkerProvider } from '@components/containers';
+import { SaleorProvider, useUserDetails } from '@sdk/react';
 import { defaultTheme, GlobalStyle } from '@styles';
 import { defaultDataIdFromObject, InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
@@ -9,7 +9,7 @@ import { ApolloLink } from 'apollo-link';
 import { BatchHttpLink } from 'apollo-link-batch-http';
 import { RetryLink } from 'apollo-link-retry';
 import * as React from 'react';
-import { positions, Provider as AlertProvider, useAlert } from 'react-alert';
+import { positions, Provider as AlertProvider } from 'react-alert';
 import { ApolloProvider } from 'react-apollo';
 import { render } from 'react-dom';
 import { hot } from 'react-hot-loader';
@@ -67,50 +67,50 @@ const startApp = async () => {
   };
 
   const Root = hot(module)(() => {
-    const Notifications = () => {
-      const alert = useAlert();
+    // const Notifications = () => {
+    //   const alert = useAlert();
+    //   console.log('Notification!!');
+    //   const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
-      const { updateAvailable } = React.useContext(ServiceWorkerContext);
+    //   React.useEffect(() => {
+    //     if (updateAvailable) {
+    //       alert.show(
+    //         {
+    //           actionText: "Refresh",
+    //           content:
+    //             "To update the application to the latest version, please refresh the page!",
+    //           title: "New version is available!",
+    //         },
+    //         {
+    //           onClose: () => {
+    //             location.reload();
+    //           },
+    //           timeout: 0,
+    //           type: "success",
+    //         }
+    //       );
+    //     }
+    //   }, [updateAvailable]);
 
-      React.useEffect(() => {
-        if (updateAvailable) {
-          alert.show(
-            {
-              actionText: "Refresh",
-              content:
-                "To update the application to the latest version, please refresh the page!",
-              title: "New version is available!",
-            },
-            {
-              onClose: () => {
-                location.reload();
-              },
-              timeout: 0,
-              type: "success",
-            }
-          );
-        }
-      }, [updateAvailable]);
-
-      useAuth((authenticated: boolean) => {
-        if (authenticated) {
-          alert.show(
-            {
-              title: "Inicio de Sesión con Éxito.",
-            },
-            { type: "success" }
-          );
-        } else {
-          alert.show(
-            {
-              title: "Has cerrado sesión con éxito",
-            },
-            { type: "success" }
-          );
-        }
-      });
-      return null;
-    };
+    //   useAuth((authenticated: boolean) => {
+    //     if (authenticated) {
+    //       alert.show(
+    //         {
+    //           title: "Inicio de Sesión con Éxito.",
+    //         },
+    //         { type: "success" }
+    //       );
+    //     } else {
+    //       alert.show(
+    //         {
+    //           title: "Has cerrado sesión con éxito",
+    //         },
+    //         { type: "success" }
+    //       );
+    //     }
+    //   });
+    //   return null;
+    // };
 
     const Checkout = ({ children }) => {
       const user = useUserDetails();
@@ -142,7 +142,7 @@ const startApp = async () => {
                             />
                             <Route component={App} />
                           </Switch>
-                          <Notifications />
+                          {/* <Notifications /> */}
                         </CartProvider>
                       )}
                     </CheckoutContext.Consumer>
