@@ -20,6 +20,7 @@ export interface WishlistInterface {
     getQuantity(): number;
     remove(variantId: string): void;
     subtract(variantId: string, quantity?: number): void;
+    addToCart(): void;
 }
 
 /* tslint:disable:no-empty */
@@ -34,6 +35,7 @@ export const WishlistContext = createContext<WishlistInterface>({
     loading: false,
     remove: variantId => {},
     subtract: (variantId, quantity = 1) => {},
+    addToCart: () => {},
 });
 /* tslint:enable:no-empty */
 WishlistContext.displayName = "WishlistContext";

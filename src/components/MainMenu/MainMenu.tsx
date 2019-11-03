@@ -35,7 +35,6 @@ const MainMenu: React.FC = () => {
           <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
               const items = maybe(() => data.shop.navigation.main.items, []);
-              // TODO[sebastian]: Need to add wishlist, Locales, and profile to this section coming from the database
               return (
                 <ul>
                   <li
@@ -67,7 +66,6 @@ const MainMenu: React.FC = () => {
             <div className={"main-menu__logo_img"}>
               <img src={logoImg}/>
             </div>
-            {/* <ReactSVG path={logoImg} /> */}
           </Link>
         </div>
         <div className="main-menu__right">

@@ -130,7 +130,10 @@
         text-transform: uppercase;
         transition: 0.3s;
       }
-
+      &__active {
+        fill: $turquoise;
+        fill-rule: inherit;
+      }
     }
   }
 }

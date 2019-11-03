@@ -64,7 +64,11 @@ const Wishlist: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) =
                                         />
                                         <div className="wishlist__footer">
                                           <div className="wishlist__footer__button">
-                                            <Button secondary>Añadir a Mis Compras</Button>
+                                            <Button
+                                              onClick={wishlist.addToCart}
+                                              secondary>
+                                              Añadir a Mis Compras
+                                            </Button>
                                           </div>
                                         </div>
                                       </>

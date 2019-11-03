@@ -4,6 +4,7 @@ import { ProductDetails_product_variants, ProductDetails_product_variants_pricin
 import * as React from 'react';
 
 import { CartContext, CartLine } from '../CartProvider/context';
+import { WishlistContext, WishlistInterface } from '../WishlistProvider/context';
 import AddToCart from './AddToCart';
 import VariantPicker from './VariantPickers';
 
@@ -31,6 +32,10 @@ class ProductDescription extends React.Component<
   handleSubmit = (variant: string, quantity: number) => {
     this.props.addToCart(variant, quantity);
   };
+
+  handleAddToWishlist = (wishlist: WishlistInterface, variant: string, quantity: number) => {
+    wishlist.add(variant, quantity);
+  }
 
   canAddToCart = (lines: CartLine[], variant: string, quantity: number, variantStock: number) => {
     const cartLine = lines.find(({ variantId }) => variantId === variant);
@@ -61,15 +66,20 @@ class ProductDescription extends React.Component<
             <h4>Description</h4>
               {children}
           </div>
-          <CartContext.Consumer>
-            {({ lines }) => (
-              <AddToCart
-                onSubmit={this.handleSubmit.bind(this, variant, quantity)}
-                lines={lines}
-                disabled={!this.canAddToCart(lines, variant, quantity,variantStock)}
-              />
+          <WishlistContext.Consumer>
+            {wishlist => (
+              <CartContext.Consumer>
+                {({ lines }) => (
+                  <AddToCart
+                    onSubmit={this.handleSubmit.bind(this, variant, quantity)}
+                    lines={lines}
+                    disabled={!this.canAddToCart(lines, variant, quantity,variantStock)}
+                    onAddWishlist={this.handleAddToWishlist.bind(this, wishlist, variant, quantity)}
+                  />
+                )}
+              </CartContext.Consumer>
             )}
-          </CartContext.Consumer>
+          </WishlistContext.Consumer>
           </>
         )}
         </VariantPicker>

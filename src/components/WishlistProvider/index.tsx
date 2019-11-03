@@ -1,6 +1,7 @@
 import { pullAllBy } from 'lodash';
 import React from 'react';
 
+import { CartInterface } from '../CartProvider/context';
 import { WishlistContext, WishlistInterface, WishlistLineInterface } from './context';
 
 enum LocalStorageKeys {
@@ -8,6 +9,7 @@ enum LocalStorageKeys {
 }
 
 interface WishlistProviderProps {
+    cartConsumer: CartInterface
 }
 
 type WishlistProviderState = WishlistInterface;
@@ -36,6 +38,7 @@ export default class WishlistProvider extends React.Component<WishlistProviderPr
             loading: false,
             remove: this.remove,
             subtract: this.subtract,
+            addToCart: this.addToCart,
         }
     }
 
@@ -76,7 +79,7 @@ export default class WishlistProvider extends React.Component<WishlistProviderPr
         const line = this.getLine(variantId);
         const newQuantity = line ? line.quantity - quantity : quantity;
         this.changeQuantity([{ variantId, quantity: newQuantity }]);
-      };
+    };
     
     clear = () => {
         this.setState({ lines: [], errors: [] });
@@ -90,6 +93,14 @@ export default class WishlistProvider extends React.Component<WishlistProviderPr
     
     remove = variantId => this.changeQuantity([{ variantId, quantity: 0 }]);
 
+    addToCart = () => {
+        const { lines } = this.state;
+        const { cartConsumer } = this.props;
+        for(const line of lines) {
+            cartConsumer.add(line.variantId, line.quantity);
+        }
+        this.clear();
+    }
     render() {
         return (
             <WishlistContext.Provider value={this.state}>
