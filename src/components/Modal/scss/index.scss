@@ -7,6 +7,9 @@ $horizontalPadding: 2rem;
   &__title {
     margin-bottom: 2rem;
   }
+  &-overlay{
+    min-height: 200px;
+  }
   &__footer {
     margin-top: 2rem;
     position: relative;

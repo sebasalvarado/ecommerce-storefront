@@ -1,4 +1,3 @@
-import { ApolloClient } from 'apollo-client';
 import { pullAllBy } from 'lodash';
 import React from 'react';
 
@@ -9,8 +8,6 @@ enum LocalStorageKeys {
 }
 
 interface WishlistProviderProps {
-    wishlist: WishlistInterface,
-    apolloClient: ApolloClient<any>;
 }
 
 type WishlistProviderState = WishlistInterface;

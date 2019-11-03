@@ -25,6 +25,7 @@ import { baseUrl as checkoutBaseUrl } from './checkout/routes';
 import { OverlayProvider, UserProvider } from './components';
 import CartProvider from './components/CartProvider';
 import ShopProvider from './components/ShopProvider';
+import WishlistProvider from './components/WishlistProvider';
 import { apiUrl, serviceWorkerTimeout } from './constants';
 import { authLink, invalidTokenLinkWithTokenHandlerComponent } from './core/auth';
 import { history } from './history';
@@ -135,14 +136,17 @@ const startApp = async () => {
                           checkout={checkout}
                           apolloClient={apolloClient}
                         >
-                          <Switch>
-                            <Route
-                              path={checkoutBaseUrl}
-                              component={CheckoutApp}
-                            />
-                            <Route component={App} />
-                          </Switch>
-                          {/* <Notifications /> */}
+                          <WishlistProvider
+                          >
+                            <Switch>
+                              <Route
+                                path={checkoutBaseUrl}
+                                component={CheckoutApp}
+                              />
+                              <Route component={App} />
+                            </Switch>
+                            {/* <Notifications /> */}
+                          </WishlistProvider>
                         </CartProvider>
                       )}
                     </CheckoutContext.Consumer>

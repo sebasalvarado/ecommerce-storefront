@@ -1,11 +1,12 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import ReactSVG from "react-svg";
+import classnames from 'classnames';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import ReactSVG from 'react-svg';
 
-import { Button } from "..";
-import closeImg from "../../images/modal-close.svg";
+import { Button } from '..';
+import closeImg from '../../images/modal-close.svg';
 
 interface IModalProps {
   target?: HTMLElement | null;
@@ -15,7 +16,9 @@ interface IModalProps {
   submitBtnText?: string;
   loading: boolean;
   formId?: string;
+  className?: string;
   show: boolean;
+  onSelect?: () => void;
 }
 const modalRoot = document.getElementById("modal-root");
 
@@ -29,10 +32,12 @@ const Modal: React.FC<IModalProps> = ({
   target = modalRoot,
   show,
   title,
+  className,
+  onSelect,
 }) =>
   target && show
     ? ReactDOM.createPortal(
-        <div className="overlay overlay--modal">
+        <div className={classnames("overlay", "overlay--modal", className)}>
           <div className="overlay__modal">
             <div className="modal">
               <div className="modal__title">
@@ -56,6 +61,10 @@ const Modal: React.FC<IModalProps> = ({
                     form={formId}
                     disabled={loading}
                     className="modal__button"
+                    onClick={() => {
+                      onSelect();
+                      hide();
+                    }}
                   >
                     {loading ? "Loading" : submitBtnText}
                   </Button>

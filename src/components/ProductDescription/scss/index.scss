@@ -1,5 +1,8 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.overlay__modal {
+  min-height: 200px;
+}
 .product-description {
   h3 {
     text-transform: uppercase;

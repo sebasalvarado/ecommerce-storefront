@@ -1,3 +1,5 @@
+import { ProductVariantFields } from '../../../@sdk/fragments/types/ProductVariantFields';
+
 /* tslint:disable */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -251,6 +253,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ca
   name: string;
 }
 
+
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
   __typename: "Product";
   /**
@@ -271,6 +274,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
    */
   pricing: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing | null;
   category: FeaturedProducts_shop_homepageCollection_products_edges_node_category;
+  variants: ProductVariantFields[] | null;
 }
 
 export interface FeaturedProducts_shop_homepageCollection_products_edges {
