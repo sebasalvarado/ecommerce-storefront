@@ -1,9 +1,8 @@
-import React from "react";
+import { DropdownSelect, Icon } from '@components/atoms';
+import React from 'react';
 
-import { DropdownSelect, Icon } from "@components/atoms";
-
-import * as S from "./styles";
-import { IProps } from "./types";
+import * as S from './styles';
+import { IProps } from './types';
 
 export const ProductListHeader: React.FC<IProps> = ({
   numberOfProducts = 0,
@@ -20,7 +19,7 @@ export const ProductListHeader: React.FC<IProps> = ({
         <S.FiltersButton onClick={openFiltersMenu}>
           <Icon name="filter" size={24} />
           <S.Filters>
-            FILTERS{" "}
+            FILTROS{" "}
             {activeFilters > 0 && (
               <>
                 <span>({activeFilters})</span>
@@ -29,13 +28,13 @@ export const ProductListHeader: React.FC<IProps> = ({
           </S.Filters>
         </S.FiltersButton>
         {activeFilters > 0 && (
-          <S.Clear onClick={clearFilters}>CLEAR FILTERS</S.Clear>
+          <S.Clear onClick={clearFilters}>ELIMINAR FILTROS</S.Clear>
         )}
       </S.LeftSide>
 
       <div>
         <S.Element>
-          <S.Label>Products found: </S.Label> {numberOfProducts}
+          <S.Label>Número de Productos: </S.Label> {numberOfProducts}
         </S.Element>
         <S.Element>
           <S.Sort>

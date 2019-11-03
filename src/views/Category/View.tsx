@@ -1,19 +1,14 @@
-import * as React from "react";
-import { RouteComponentProps } from "react-router";
+import { IFilters } from '@types';
+import * as React from 'react';
+import { RouteComponentProps } from 'react-router';
+import { StringParam, useQueryParam } from 'use-query-params';
 
-import { IFilters } from "@types";
-import { StringParam, useQueryParam } from "use-query-params";
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
-import NetworkStatus from "../../components/NetworkStatus";
-import { PRODUCTS_PER_PAGE } from "../../core/config";
-import {
-  convertSortByFromString,
-  convertToAttributeScalar,
-  getGraphqlIdFromDBId,
-  maybe,
-} from "../../core/utils";
-import Page from "./Page";
-import { TypedCategoryProductsQuery } from "./queries";
+import { MetaWrapper, NotFound, OfflinePlaceholder } from '../../components';
+import NetworkStatus from '../../components/NetworkStatus';
+import { PRODUCTS_PER_PAGE } from '../../core/config';
+import { convertSortByFromString, convertToAttributeScalar, getGraphqlIdFromDBId, maybe } from '../../core/utils';
+import Page from './Page';
+import { TypedCategoryProductsQuery } from './queries';
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -96,31 +91,31 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: "Clear...",
+      label: "Eliminar...",
       value: null,
     },
     {
-      label: "Price Low-High",
+      label: "Precio Menor-Mayor",
       value: "price",
     },
     {
-      label: "Price High-Low",
+      label: "Precio Menor-Mayor",
       value: "-price",
     },
     {
-      label: "Name Increasing",
+      label: "Nombre Ascendente",
       value: "name",
     },
     {
-      label: "Name Decreasing",
+      label: "Nombre Descendente",
       value: "-name",
     },
     {
-      label: "Last updated Ascending",
+      label: "Recién Actualizado Acendente",
       value: "updated_at",
     },
     {
-      label: "Last updated Descending",
+      label: "Recién Actualizado Descendente",
       value: "-updated_at",
     },
   ];

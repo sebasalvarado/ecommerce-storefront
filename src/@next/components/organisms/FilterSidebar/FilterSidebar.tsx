@@ -1,12 +1,11 @@
-import React from "react";
+import { IconButton } from '@components/atoms';
+import { FilterAttribute } from '@components/molecules';
+import React from 'react';
 
-import { Overlay } from "../";
-
-import { IconButton } from "@components/atoms";
-import { FilterAttribute } from "@components/molecules";
-import { useHandlerWhenClickedOutside } from "../../../hooks";
-import * as S from "./styles";
-import { IProps } from "./types";
+import { Overlay } from '../';
+import { useHandlerWhenClickedOutside } from '../../../hooks';
+import * as S from './styles';
+import { IProps } from './types';
 
 export const FilterSidebar: React.FC<IProps> = ({
   hide,
@@ -30,7 +29,7 @@ export const FilterSidebar: React.FC<IProps> = ({
     >
       <S.Wrapper ref={setElementRef()}>
         <S.Header>
-          <span>FILTERS</span>
+          <span>FILTROS</span>
           <IconButton onClick={hide} name="x" size={18} color="000" />
         </S.Header>
         {attributes.map(attribute => {

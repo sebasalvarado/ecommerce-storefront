@@ -1,14 +1,13 @@
-import React from "react";
-import { components } from "react-select";
-import { ThemeContext } from "styled-components";
+import React from 'react';
+import { components } from 'react-select';
+import { ThemeContext } from 'styled-components';
 
-import { Label } from "../Label";
-import { Select } from "../Select";
-
-import { useHandlerWhenClickedOutside } from "../../../hooks";
-import { Icon } from "../Icon";
-import * as S from "./styles";
-import { IProps } from "./types";
+import { useHandlerWhenClickedOutside } from '../../../hooks';
+import { Icon } from '../Icon';
+import { Label } from '../Label';
+import { Select } from '../Select';
+import * as S from './styles';
+import { IProps } from './types';
 
 export const DropdownSelect: React.FC<IProps> = ({
   options,
@@ -24,7 +23,7 @@ export const DropdownSelect: React.FC<IProps> = ({
   const customComponents = {
     Control: () => (
       <S.SortLine onClick={() => setMenuIsOpen(!menuIsOpen)}>
-        <Label>Sort by:</Label>
+        <Label>Ordenar Por:</Label>
         <S.Value>{` ${value ? value.label : ""}`}</S.Value>
         <S.Indicator rotate={String(menuIsOpen)}>
           <Icon name="select_arrow" size={10} />
