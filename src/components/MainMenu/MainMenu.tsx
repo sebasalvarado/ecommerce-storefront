@@ -1,7 +1,7 @@
 import './scss/index.scss';
 
 import { Trans } from '@lingui/react';
-import { useSignOut, useUserDetails } from '@sdk/react';
+import { useAuth, useSignOut, useUserDetails } from '@sdk/react';
 import * as React from 'react';
 import Media from 'react-media';
 import { Link } from 'react-router-dom';
@@ -9,24 +9,26 @@ import ReactSVG from 'react-svg';
 
 import { InfoTopBar, MenuDropdown, Offline, Online, OverlayContext, OverlayTheme, OverlayType } from '..';
 import { Icon } from '../../@next/components/atoms';
+import { WishlistContext } from '../../@sdk/react/components/WishlistProvider/context';
 import { maybe } from '../../core/utils';
 import { mediumScreen, smallScreen } from '../../globalStyles/scss/variables.scss';
 import cartImg from '../../images/cart.svg';
 import hamburgerHoverImg from '../../images/hamburger-hover.svg';
 import hamburgerImg from '../../images/hamburger.svg';
+import logoMobileImg from '../../images/logo_mobile_ponti.png';
 import logoImg from '../../images/logo_ponti.png';
-import locationIcon from '../../images/ponti-logos/032-location.svg';
 import searchImg from '../../images/search.svg';
 import userImg from '../../images/user.svg';
 import { accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl } from '../../routes';
 import { CartContext } from '../CartProvider/context';
-import { WishlistContext } from '../WishlistProvider/context';
 import NavDropdown from './NavDropdown';
 import { TypedMainMenuQuery } from './queries';
 
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
+  const { authenticated }  = useAuth();
+  
 
   function returnMobileView(overlayContext) {
     return(
@@ -64,7 +66,7 @@ const MainMenu: React.FC = () => {
         <div className="main-menu__center">
           <Link to={baseUrl}>
             <div className={"main-menu__logo_img"}>
-              <img src={logoImg}/>
+              <img src={logoMobileImg}/>
             </div>
           </Link>
         </div>
@@ -262,7 +264,8 @@ const MainMenu: React.FC = () => {
                     </>
                   )}
                 />
-                <WishlistContext.Consumer>
+                {authenticated &&
+                  <WishlistContext.Consumer>
                   {wishlist => (
                       <li 
                         className="main-menu__icon main-menu__wishlist"
@@ -272,24 +275,29 @@ const MainMenu: React.FC = () => {
                             OverlayTheme.right
                           );
                         }}
-                      >
-                          <Icon size={24} name="heart"/>
+                      >   <div>
+                            <div>
+                              <Icon size={24} name="heart_menu"/>
+                            </div>
+                          </div>
                           {
-                            wishlist.getQuantity() > 0 ? (
+                            (wishlist.wishlist || []).length > 0 ? (
                               <span className="main-menu__wishlist__quantity">
-                                {wishlist.getQuantity()}
+                                {wishlist.wishlist.length}
                               </span>
                             ): null
-                           }
-                          <p className="main-menu__icon__text">Wishlist</p>
+                            }
+                          <p className="main-menu__icon__text">Favoritos</p>
                       </li>
                   )}
                 </WishlistContext.Consumer>
+                }
 
-                <li className="main-menu__icon">
+
+                {/* <li className="main-menu__icon">
                   <ReactSVG path={locationIcon}/>
                   <p className="main-menu__icon__text">Locales</p>
-                </li>
+                </li> */}
                 <CartContext.Consumer>
                   {cart => (
                     <li
@@ -307,6 +315,7 @@ const MainMenu: React.FC = () => {
                           {cart.getQuantity()}
                         </span>
                       ) : null}
+                      <p className="main-menu__icon__text">Compras</p>
                     </li>
                   )}
                 </CartContext.Consumer>

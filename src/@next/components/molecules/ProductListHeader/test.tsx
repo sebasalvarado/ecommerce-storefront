@@ -1,8 +1,9 @@
-import { mount, shallow } from "enzyme";
-import "jest-styled-components";
-import React from "react";
+import 'jest-styled-components';
 
-import { ProductListHeader } from ".";
+import { mount, shallow } from 'enzyme';
+import React from 'react';
+
+import { ProductListHeader } from '.';
 
 const clearFilterMock = jest.fn();
 const onChangeMock = jest.fn();
@@ -27,7 +28,6 @@ const DEFAULT_PROPS = {
 };
 
 describe("<ProductListHeader />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<ProductListHeader {...DEFAULT_PROPS} />);
 

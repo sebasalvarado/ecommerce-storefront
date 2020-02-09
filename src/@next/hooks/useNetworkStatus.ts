@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const useNetworkStatus = (callBack?: (online?: boolean) => void) => {
   const [online, setOnline] = React.useState(

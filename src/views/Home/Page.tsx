@@ -39,8 +39,10 @@ const Page: React.FC<{
           {categories.edges.map(({ node: category }) => (
             <div key={category.id}>
               <Link
-                to={generateCategoryUrl(category.id, category.name)}
-                key={category.id}
+                to={generateCategoryUrl(
+                  categories.edges[0].node.id,
+                  categories.edges[0].node.name
+                )}
               >
                 <div
                   className={classNames("home-page__categories__list__image", {
@@ -70,7 +72,6 @@ const Page: React.FC<{
           <div className="home-page__categories_men__title__right_line"></div>
         </div>
         <div className="home-page__categories_men__list">
-          
           {categories.edges.map(({ node: category }) => (
             <div key={category.id}>
               <Link
@@ -92,7 +93,8 @@ const Page: React.FC<{
                 <h4>{category.name}</h4>
               </Link>
             </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </div>

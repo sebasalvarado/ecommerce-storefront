@@ -1,12 +1,12 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { TaxedMoney } from '@components/containers';
+import { Thumbnail } from '@components/molecules';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import ReactSVG from 'react-svg';
 
-import { Thumbnail } from "@components/molecules";
-
-import { generateProductUrl } from "../../../core/utils";
-import removeImg from "../../../images/garbage.svg";
-import { LineI } from "../../CartTable/ProductRow";
+import { generateProductUrl } from '../../../core/utils';
+import removeImg from '../../../images/garbage.svg';
+import { LineI } from '../../CartTable/ProductRow';
 
 const ProductList: React.SFC<{
   lines: LineI[];
@@ -21,13 +21,15 @@ const ProductList: React.SFC<{
             <Thumbnail source={line.product} />
           </Link>
           <div className="cart__list__item__details">
-            <p>{line.pricing.price.gross.localized}</p>
+            <p>
+              <TaxedMoney taxedMoney={line.pricing.price} />
+            </p>
             <Link to={productUrl}>
               <p>{line.product.name}</p>
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.name}</span>
-              <span>{`Qty: ${line.quantity}`}</span>
+              <span>{`Cant: ${line.quantity}`}</span>
             </span>
             <ReactSVG
               path={removeImg}

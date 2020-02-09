@@ -16,25 +16,13 @@
     "interface-over-type-literal": false,
     "variable-name": {
       "options": [
-        "ban-keywords",
+        "ban-keywords", 
         "check-format",
         "allow-leading-underscore",
         "allow-pascal-case"
       ]
     },
-    "trailing-comma": [
-      true,
-      {
-        "singleline": "never",
-        "multiline": {
-          "objects": "always",
-          "arrays": "always",
-          "functions": "never",
-          "typeLiterals": "ignore"
-        },
-        "esSpecCompliant": true
-      }
-    ]
+    "trailing-comma": false
   },
   "jsRules": {
     "no-console": false

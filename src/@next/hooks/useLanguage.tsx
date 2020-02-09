@@ -1,6 +1,5 @@
-import React from "react";
-
 import { I18nContext } from '@components/containers';
+import React from 'react';
 
 export const useLanguage = () => {
   const { language, languages, setLanguage } = React.useContext(I18nContext);
