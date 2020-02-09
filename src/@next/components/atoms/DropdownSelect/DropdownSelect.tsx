@@ -14,6 +14,7 @@ export const DropdownSelect: React.FC<IProps> = ({
   name,
   value,
   onChange,
+  label,
 }: IProps) => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false);
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
@@ -23,7 +24,7 @@ export const DropdownSelect: React.FC<IProps> = ({
   const customComponents = {
     Control: () => (
       <S.SortLine onClick={() => setMenuIsOpen(!menuIsOpen)}>
-        <Label>Ordenar Por:</Label>
+        <Label>{label || 'Ordenar Por:'}</Label>
         <S.Value>{` ${value ? value.label : ""}`}</S.Value>
         <S.Indicator rotate={String(menuIsOpen)}>
           <Icon name="select_arrow" size={10} />

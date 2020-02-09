@@ -11,6 +11,7 @@ import { CartPage } from '../views/Cart';
 import { CategoryPage } from '../views/Category';
 import { CollectionPage } from '../views/Collection';
 import { HomePage } from '../views/Home';
+import { LocationsPage } from '../views/Locations';
 import OrderConfirmation from '../views/OrderConfirmation/View';
 import { ProductPage } from '../views/Product';
 import { SearchPage } from '../views/Search';
@@ -32,6 +33,7 @@ export const orderHistoryUrl = `${baseUrl}order-history/`;
 export const addressBookUrl = `${baseUrl}address-book/`;
 export const paymentOptionsUrl = `${baseUrl}payment-options/`;
 export const passwordResetUrl = `${baseUrl}reset-password/`;
+export const locationsUrl = `${baseUrl}locations/`;
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -53,6 +55,7 @@ export const Routes: React.FC = () => (
     <Route path={addressBookUrl} component={Account} />
     <Route path={paymentOptionsUrl} component={Account} />
     <Route path={passwordResetUrl} component={PasswordReset} />
+    <Route path={locationsUrl} component={LocationsPage}/>
     <Route component={NotFound} />
   </Switch>
 );
