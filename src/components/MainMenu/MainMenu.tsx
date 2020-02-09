@@ -17,9 +17,10 @@ import hamburgerHoverImg from '../../images/hamburger-hover.svg';
 import hamburgerImg from '../../images/hamburger.svg';
 import logoMobileImg from '../../images/logo_mobile_ponti.png';
 import logoImg from '../../images/logo_ponti.png';
+import locationIcon from '../../images/ponti-logos/032-location.svg';
 import searchImg from '../../images/search.svg';
 import userImg from '../../images/user.svg';
-import { accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl } from '../../routes';
+import { accountUrl, addressBookUrl, baseUrl, locationsUrl, orderHistoryUrl, paymentOptionsUrl } from '../../routes';
 import { CartContext } from '../CartProvider/context';
 import NavDropdown from './NavDropdown';
 import { TypedMainMenuQuery } from './queries';
@@ -266,38 +267,40 @@ const MainMenu: React.FC = () => {
                 />
                 {authenticated &&
                   <WishlistContext.Consumer>
-                  {wishlist => (
-                      <li 
-                        className="main-menu__icon main-menu__wishlist"
-                        onClick={() => {
-                          overlayContext.show(
-                            OverlayType.wishlist,
-                            OverlayTheme.right
-                          );
-                        }}
-                      >   <div>
-                            <div>
-                              <Icon size={24} name="heart_menu"/>
+                    {wishlist => (
+                        <li 
+                          className="main-menu__icon main-menu__wishlist"
+                          onClick={() => {
+                            overlayContext.show(
+                              OverlayType.wishlist,
+                              OverlayTheme.right
+                            );
+                          }}
+                        >   <div>
+                              <div>
+                                <Icon size={24} name="heart_menu"/>
+                              </div>
                             </div>
-                          </div>
-                          {
-                            (wishlist.wishlist || []).length > 0 ? (
-                              <span className="main-menu__wishlist__quantity">
-                                {wishlist.wishlist.length}
-                              </span>
-                            ): null
-                            }
-                          <p className="main-menu__icon__text">Favoritos</p>
-                      </li>
-                  )}
-                </WishlistContext.Consumer>
+                            {
+                              (wishlist.wishlist || []).length > 0 ? (
+                                <span className="main-menu__wishlist__quantity">
+                                  {wishlist.wishlist.length}
+                                </span>
+                              ): null
+                              }
+                            <p className="main-menu__icon__text">Favoritos</p>
+                        </li>
+                    )}
+                  </WishlistContext.Consumer>
                 }
+                <Link to={locationsUrl}>
+                  <li className="main-menu__icon"
+                  >
+                    <ReactSVG path={locationIcon}/>
+                    <p className="main-menu__icon__text">Locales</p>
+                  </li>
+                </Link>
 
-
-                {/* <li className="main-menu__icon">
-                  <ReactSVG path={locationIcon}/>
-                  <p className="main-menu__icon__text">Locales</p>
-                </li> */}
                 <CartContext.Consumer>
                   {cart => (
                     <li

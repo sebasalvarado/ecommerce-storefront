@@ -10,8 +10,9 @@ import { Icon } from '../../@next/components/atoms';
 import { getAuthToken } from '../../core/auth';
 import backImg from '../../images/arrow-back.svg';
 import Logo from '../../images/favicon_mobile_ponti.png';
+import locationIcon from '../../images/ponti-logos/032-location.svg';
 import userImg from '../../images/user.svg';
-import { accountUrl, baseUrl } from '../../routes';
+import { accountUrl, baseUrl, locationsUrl } from '../../routes';
 import { OverlayContext, OverlayContextInterface, OverlayTheme, OverlayType } from '../Overlay';
 import NavItem, { INavItem } from './NavItem';
 
@@ -159,14 +160,16 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                   overlayContext.show(OverlayType.wishlist, OverlayTheme.right);                
                 }}
               >
-                <p className={"side-nav__menu-options__item__text"}>FAVORITOS</p>
-                <Icon size={24} name="heart_menu"/>
-              </li>
+              <p className={"side-nav__menu-options__item__text"}>FAVORITOS</p>
+              <Icon size={24} name="heart"/>
+              </li> 
             }
-            {/* <li className={"side-nav__menu-options__item"}>
-              <p className={"side-nav__menu-options__item__text"}>LOCALES</p>
-              <ReactSVG path={locationIcon} />
-            </li> */}
+            <Link to={locationsUrl}>
+              <li className={"side-nav__menu-options__item"}>
+                <p className={"side-nav__menu-options__item__text"}>LOCALES</p>
+                <ReactSVG path={locationIcon} />
+              </li>
+            </Link>
             <UserProfile 
               overlayContext={overlayContext}
             />

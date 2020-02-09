@@ -103,7 +103,7 @@ const Page: React.FC<PageProps> = ({
       )}
       <div className="cart-page__checkout-action">
         <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-          <Button disabled={cartLoading}>Proceed to Checkout</Button>
+          <Button disabled={cartLoading}>Completa tu Compra</Button>
         </Link>
       </div>
     </>
