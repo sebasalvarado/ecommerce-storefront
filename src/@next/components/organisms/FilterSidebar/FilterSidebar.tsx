@@ -1,9 +1,9 @@
 import { IconButton } from '@components/atoms';
 import { FilterAttribute } from '@components/molecules';
+import { useHandlerWhenClickedOutside } from '@hooks';
 import React from 'react';
 
 import { Overlay } from '../';
-import { useHandlerWhenClickedOutside } from '../../../hooks';
 import * as S from './styles';
 import { IProps } from './types';
 

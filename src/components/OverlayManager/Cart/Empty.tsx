@@ -1,17 +1,16 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Button } from "../..";
+import { Button } from '../..';
 
 const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
   <div className="cart__empty">
-    <h4>Yor bag is empty</h4>
+    <h4>No hay productos seleccionados</h4>
     <p>
-      You haven’t added anything to your bag. We’re sure you’ll find something
-      in our store
+      No has añadido productos a tus compras todavia. Estamos seguros que encontrarás algo que te va encantar.
     </p>
     <div className="cart__empty__action">
       <Button secondary onClick={overlayHide}>
-        Continue Shopping
+        Seguir Comprando
       </Button>
     </div>
   </div>

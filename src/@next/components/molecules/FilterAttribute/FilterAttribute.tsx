@@ -1,13 +1,9 @@
-import React from "react";
+import { ButtonLink, Checkbox } from '@components/atoms';
+import React from 'react';
 
-import { ButtonLink } from "@components/atoms";
-
-import { IFilters, ISingleFilterAttribute } from "../../../types";
-import * as S from "./styles";
-import { IProps } from "./types";
-
-const ENTER_KEY: number = 13;
-const SPACE_KEY: number = 32;
+import { IFilters, ISingleFilterAttribute } from '../../../types';
+import * as S from './styles';
+import { IProps } from './types';
 
 const checkIfAttributeIsChecked = (
   filters: IFilters,
@@ -37,45 +33,17 @@ export const FilterAttribute: React.FC<IProps> = ({
       <S.Header>{name}</S.Header>
       {values &&
         values.map((value, index) => {
-          const ref = React.useRef<HTMLDivElement>(null);
-
           if (!viewAllOptions && index > filtersLimit - 1) {
             return <></>;
           } else {
             return (
-              <S.Checkbox
-                ref={ref}
-                onClick={evt => {
-                  evt.preventDefault();
-                  onAttributeFiltersChange(slug, value.slug);
-                  if (ref.current) {
-                    ref.current.blur();
-                  }
-                }}
+              <Checkbox
+                name={slug}
+                checked={checkIfAttributeIsChecked(filters, value, slug)}
+                onChange={() => onAttributeFiltersChange(slug, value.slug)}
               >
-                <S.Label>
-                  <input
-                    tabIndex={-1}
-                    type="checkbox"
-                    name={slug}
-                    checked={checkIfAttributeIsChecked(filters, value, slug)}
-                    readOnly
-                  />
-                  <div
-                    ref={ref}
-                    tabIndex={0}
-                    onKeyDown={evt => {
-                      if (evt.which === SPACE_KEY || evt.which === ENTER_KEY) {
-                        onAttributeFiltersChange(slug, value.slug);
-                        evt.preventDefault();
-                      }
-                    }}
-                  >
-                    <span></span>
-                  </div>
-                </S.Label>
                 {value && value.name}
-              </S.Checkbox>
+              </Checkbox>
             );
           }
         })}

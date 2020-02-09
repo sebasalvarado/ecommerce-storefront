@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 import ReactSVG from 'react-svg';
 
 import { Icon } from '../../@next/components/atoms';
+import { getAuthToken } from '../../core/auth';
 import backImg from '../../images/arrow-back.svg';
-import logoImg from '../../images/logo_ponti.svg';
-import locationIcon from '../../images/ponti-logos/032-location.svg';
+import Logo from '../../images/favicon_mobile_ponti.png';
 import userImg from '../../images/user.svg';
 import { accountUrl, baseUrl } from '../../routes';
 import { OverlayContext, OverlayContextInterface, OverlayTheme, OverlayType } from '../Overlay';
@@ -104,6 +104,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
   render() {
     const { hideOverlay } = this.props;
     const { displayedItems, parent } = this.state;
+    const isAuthenticated = !!getAuthToken();
 
     return (
       <OverlayContext.Consumer>
@@ -124,7 +125,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                     className="side-nav__menu-item-logo"
                     onClick={hideOverlay}
                   >
-                    <ReactSVG path={logoImg} />
+                    <img src={Logo} />
                   </Link>
                   <span className="side-nav__menu-item-close" onClick={hideOverlay}>
                     <span />
@@ -152,18 +153,20 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             ))}
           </ul>
           <ul className={"side-nav__menu-options__container"}>
-            <li className={classNames("side-nav__menu-options__item")}
-              onClick={() => {
+            { isAuthenticated &&
+              <li className={classNames("side-nav__menu-options__item")}
+                onClick={() => {
                   overlayContext.show(OverlayType.wishlist, OverlayTheme.right);                
-              }}
-            >
-              <p className={"side-nav__menu-options__item__text"}>WISHLIST</p>
-              <Icon size={24} name="heart"/>
-            </li>
-            <li className={"side-nav__menu-options__item"}>
+                }}
+              >
+                <p className={"side-nav__menu-options__item__text"}>FAVORITOS</p>
+                <Icon size={24} name="heart_menu"/>
+              </li>
+            }
+            {/* <li className={"side-nav__menu-options__item"}>
               <p className={"side-nav__menu-options__item__text"}>LOCALES</p>
               <ReactSVG path={locationIcon} />
-            </li>
+            </li> */}
             <UserProfile 
               overlayContext={overlayContext}
             />

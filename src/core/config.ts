@@ -1,7 +1,7 @@
-import { generatePageUrl } from "./utils";
+import { generatePageUrl } from './utils';
 
 export const BASE_URL = "/";
-export const PRODUCTS_PER_PAGE = 8;
+export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
   BRAINTREE: "Braintree",
@@ -38,10 +38,10 @@ export const SOCIAL_MEDIA = [
 ];
 export const META_DEFAULTS = {
   custom: [],
-  description: "PWA Storefront",
+  description: "Ponti Rack E-commerce",
 
   image: `${window.location.origin}${require("../images/logo_ponti.png")}`,
-  title: "Ponti | Calzado y Accesorios Online",
+  title: "Ponti Rack| Mejor Calzado, Calidad de Siempre",
   type: "website",
   url: window.location.origin,
 };

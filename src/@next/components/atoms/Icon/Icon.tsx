@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { icons } from "./definitions";
-import { IProps } from "./types";
+import { icons } from './definitions';
+import { IProps } from './types';
 
 const getPathColor = (color: string | string[], index: number) => {
   if (typeof color === "string") {
