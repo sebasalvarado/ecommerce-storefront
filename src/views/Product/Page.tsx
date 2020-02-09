@@ -1,24 +1,35 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import { RichTextContent } from '@components/atoms';
+import { CachedImage, Thumbnail } from '@components/molecules';
+import classNames from 'classnames';
+import * as React from 'react';
+import Media from 'react-media';
 
-import classNames from "classnames";
-import * as React from "react";
-import Media from "react-media";
+import { Breadcrumbs, ProductDescription } from '../../components';
+import { CartContext } from '../../components/CartProvider/context';
+import { structuredData } from '../../core/SEO/Product/structuredData';
+import { generateCategoryUrl, generateProductUrl } from '../../core/utils';
+import { smallScreen } from '../../globalStyles/scss/variables.scss';
+import GalleryCarousel from './GalleryCarousel';
+import OtherProducts from './Other';
+import { ProductDetails_product } from './types/ProductDetails';
 
-import { RichTextContent } from "@components/atoms";
-import { CachedImage, Thumbnail } from "@components/molecules";
-
-import { Breadcrumbs, ProductDescription } from "../../components";
-import { CartContext } from "../../components/CartProvider/context";
-import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
-import GalleryCarousel from "./GalleryCarousel";
-import OtherProducts from "./Other";
-import { ProductDetails_product } from "./types/ProductDetails";
-
-import { structuredData } from "../../core/SEO/Product/structuredData";
-
-class Page extends React.PureComponent<{ product: ProductDetails_product }> {
+class Page extends React.PureComponent<
+  { product: ProductDetails_product },
+  { variantId: string }
+> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      variantId: "",
+    };
+  }
+
+  setVariantId = (id: string) => {
+    this.setState({ variantId: id });
+  };
 
   get showCarousel() {
     return this.props.product.images.length > 1;
@@ -35,53 +46,46 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     },
   ];
 
-  componentDidMount() {
-    if (this.showCarousel) {
-      window.addEventListener("scroll", this.handleScroll, {
-        passive: true,
-      });
+  getImages = () => {
+    const { product } = this.props;
+    if (product.variants && this.state.variantId) {
+      const variant = product.variants
+        .filter(variant => variant.id === this.state.variantId)
+        .pop();
+      return variant.images;
+    } else {
+      return product.images;
     }
-  }
+  };
 
-  componentWillUnmount() {
-    if (this.showCarousel) {
-      window.removeEventListener("scroll", this.handleScroll);
+  renderImages = product => {
+    const images = this.getImages();
+    if (images && images.length) {
+      return images.map(image => (
+        <a href={image.url} target="_blank">
+          <CachedImage url={image.url} key={image.id}>
+            <Thumbnail source={product} />
+          </CachedImage>
+        </a>
+      ));
     }
-  }
-
-  handleScroll = () => {
-    const productGallery = this.productGallery.current;
-    const fixedElement = this.fixedElement.current;
-
-    if (productGallery && fixedElement) {
-      const containerPostion =
-        window.innerHeight - productGallery.getBoundingClientRect().bottom;
-      const fixedPosition =
-        window.innerHeight - fixedElement.getBoundingClientRect().bottom;
-      const fixedToTop = Math.floor(fixedElement.getBoundingClientRect().top);
-      const galleryToTop = Math.floor(
-        this.productGallery.current.getBoundingClientRect().top + window.scrollY
-      );
-
-      if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
-        fixedElement.classList.remove("product-page__product__info--fixed");
-        fixedElement.classList.add("product-page__product__info--absolute");
-      } else {
-        fixedElement.classList.remove("product-page__product__info--absolute");
-        fixedElement.classList.add("product-page__product__info--fixed");
-      }
-    }
+    return <CachedImage />;
   };
 
   render() {
     const { product } = this.props;
+
     const cartContextConsumer = (
       <CartContext.Consumer>
         {cart => (
           <ProductDescription
+            productId={product.id}
             name={product.name}
             productVariants={product.variants}
+            selectedAttributes={product.attributes}
+            pricing={product.pricing}
             addToCart={cart.add}
+            setVariantId={this.setVariantId}
           >
             <RichTextContent descriptionJson={product.descriptionJson} />
           </ProductDescription>
@@ -105,7 +109,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               {matches =>
                 matches ? (
                   <>
-                    <GalleryCarousel images={product.images} />
+                    <GalleryCarousel images={this.getImages()} />
                     <div className="product-page__product__info">
                       {cartContextConsumer}
                     </div>
@@ -116,19 +120,13 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       className="product-page__product__gallery"
                       ref={this.productGallery}
                     >
-                      {product.images.map((image, index) => (
-                        <CachedImage url={image.url} key={image.id}>
-                          <Thumbnail source={product} />
-                        </CachedImage>
-                      ))}
+                      {this.renderImages(product)}
                     </div>
                     <div className="product-page__product__info">
                       <div
-                        className={classNames({
-                          ["product-page__product__info--fixed"]: this
-                            .showCarousel,
-                        })}
-                        ref={this.fixedElement}
+                        className={classNames(
+                          "product-page__product__info--fixed"
+                        )}
                       >
                         {cartContextConsumer}
                       </div>

@@ -1,33 +1,24 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import * as React from "react";
-import { generatePath, Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { useUserDetails } from '@sdk/react';
+import * as React from 'react';
+import { generatePath, Link } from 'react-router-dom';
+import ReactSVG from 'react-svg';
 
-import { useUserDetails } from "@sdk/react";
-
-import {
-  Button,
-  Offline,
-  OfflinePlaceholder,
-  Online,
-  Overlay,
-  OverlayContextInterface
-} from "../..";
-import { baseUrl as checkoutUrl } from "../../../checkout/routes";
-import { maybe } from "../../../core/utils";
-import { cartUrl, checkoutLoginUrl } from "../../../routes";
-import { TypedProductVariantsQuery } from "../../../views/Product/queries";
-import { CartContext } from "../../CartProvider/context";
-import { extractCartLines, getTotal } from "../../CartProvider/utils";
-import { Error } from "../../Error";
-import Loader from "../../Loader";
-import { ShopContext } from "../../ShopProvider/context";
-import Empty from "./Empty";
-import ProductList from "./ProductList";
-
-import cartImg from "../../../images/cart.svg";
-import closeImg from "../../../images/x.svg";
+import { Button, Offline, OfflinePlaceholder, Online, Overlay, OverlayContextInterface } from '../..';
+import { baseUrl as checkoutUrl } from '../../../checkout/routes';
+import { maybe } from '../../../core/utils';
+import cartImg from '../../../images/cart.svg';
+import closeImg from '../../../images/x.svg';
+import { cartUrl, checkoutLoginUrl } from '../../../routes';
+import { TypedProductVariantsQuery } from '../../../views/Product/queries';
+import { CartContext } from '../../CartProvider/context';
+import { extractCartLines, getTotal } from '../../CartProvider/utils';
+import { Error } from '../../Error';
+import Loader from '../../Loader';
+import { ShopContext } from '../../ShopProvider/context';
+import Empty from './Empty';
+import ProductList from './ProductList';
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { data: user } = useUserDetails();
@@ -69,7 +60,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                             className="overlay__header__cart-icon"
                           />
                           <div className="overlay__header-text">
-                            My bag,{" "}
+                            Mis Compras,{" "}
                             <span className="overlay__header-text-items">
                               {cart.getQuantity() || 0} items
                             </span>
@@ -101,14 +92,14 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                                     token: null,
                                   })}
                                 >
-                                  <Button secondary>Go to my bag</Button>
+                                  <Button secondary>Ver Mis Compras</Button>
                                 </Link>
                               </div>
                               <div className="cart__footer__button">
                                 <Link
                                   to={user ? checkoutUrl : checkoutLoginUrl}
                                 >
-                                  <Button>Checkout</Button>
+                                  <Button>Comprar Ahora</Button>
                                 </Link>
                               </div>
                             </div>

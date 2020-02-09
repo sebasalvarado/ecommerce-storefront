@@ -1,6 +1,6 @@
 import { NotificationTemplate } from '@components/atoms';
 import { I18nLoader, ServiceWorkerProvider } from '@components/containers';
-import { SaleorProvider, useUserDetails } from '@sdk/react';
+import { SaleorProvider, useUserDetails, WishlistProvider } from '@sdk/react';
 import { defaultTheme, GlobalStyle } from '@styles';
 import { defaultDataIdFromObject, InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
@@ -26,7 +26,6 @@ import { OverlayProvider, UserProvider } from './components';
 import CartProvider from './components/CartProvider';
 import { CartContext } from './components/CartProvider/context';
 import ShopProvider from './components/ShopProvider';
-import WishlistProvider from './components/WishlistProvider';
 import { apiUrl, serviceWorkerTimeout } from './constants';
 import { authLink, invalidTokenLinkWithTokenHandlerComponent } from './core/auth';
 import { history } from './history';
@@ -71,7 +70,6 @@ const startApp = async () => {
   const Root = hot(module)(() => {
     // const Notifications = () => {
     //   const alert = useAlert();
-    //   console.log('Notification!!');
     //   const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
     //   React.useEffect(() => {
@@ -122,7 +120,6 @@ const startApp = async () => {
         </>
       );
     };
-
     return (
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
@@ -140,9 +137,7 @@ const startApp = async () => {
                           <CartContext.Consumer>
                           {
                             cart => (
-                              <WishlistProvider
-                                cartConsumer={cart}
-                              >
+                              <WishlistProvider cart={cart}>
                                 <Switch>
                                   <Route
                                     path={checkoutBaseUrl}

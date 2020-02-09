@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
+import { ProductOrder } from './../../types/globalTypes';
 
-import { ProductOrder } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Category
@@ -38,10 +38,6 @@ export interface Category_products_edges_node_price {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Category_products_edges_node_category {

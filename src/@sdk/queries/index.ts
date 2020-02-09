@@ -1,40 +1,25 @@
-import {
-  ApolloClient,
-  ObservableQuery,
-  QueryOptions as ApolloQueryOptions
-} from "apollo-client";
-import gql from "graphql-tag";
+import { ApolloClient, ObservableQuery, QueryOptions as ApolloQueryOptions } from 'apollo-client';
+import gql from 'graphql-tag';
 
-import { RequireOnlyOne } from "../tsHelpers";
-import * as AttributesList from "./attributes";
-import * as Category from "./category";
-import * as Checkout from "./checkout";
-import * as Orders from "./orders";
-import * as Product from "./products";
-
-import {
-  CheckoutDetails,
-  CheckoutDetailsVariables
-} from "./types/CheckoutDetails";
-import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
-
-import { Attributes, AttributesVariables } from "./types/Attributes";
-import {
-  ProductDetails,
-  ProductDetailsVariables
-} from "./types/ProductDetails";
-
-import { ProductList, ProductListVariables } from "./types/ProductList";
-
-import {
-  CategoryDetails,
-  CategoryDetailsVariables
-} from "./types/CategoryDetails";
-
-import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
-import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
-import { UserDetails } from "./types/UserDetails";
-import * as User from "./user";
+import { RequireOnlyOne } from '../tsHelpers';
+import * as AttributesList from './attributes';
+import * as Category from './category';
+import * as Checkout from './checkout';
+import * as Orders from './orders';
+import * as Product from './products';
+import { Attributes, AttributesVariables } from './types/Attributes';
+import { CategoryDetails, CategoryDetailsVariables } from './types/CategoryDetails';
+import { CheckoutDetails, CheckoutDetailsVariables } from './types/CheckoutDetails';
+import { OrderByToken, OrderByTokenVariables } from './types/OrderByToken';
+import { OrdersByUser, OrdersByUserVariables } from './types/OrdersByUser';
+import { ProductDetails, ProductDetailsVariables } from './types/ProductDetails';
+import { ProductList, ProductListVariables } from './types/ProductList';
+import { UserCheckoutDetails } from './types/UserCheckoutDetails';
+import { UserDetails } from './types/UserDetails';
+import { VariantsProducts, VariantsProductsVariables } from './types/VariantsProducts';
+import { Wishlist, WishlistVariables } from './types/Wishlist';
+import * as User from './user';
+import * as WishlistQuery from './wishlist';
 
 type QueryOptions<T = {}> = T extends { [n: string]: never }
   ? Omit<ApolloQueryOptions<{}>, "query">
@@ -82,6 +67,16 @@ export const QUERIES = {
       `,
       ...options,
     }),
+  // WishlistDetails: <TCacheShape>(
+  //   client: ApolloClient<TCacheShape>,
+  //   options: QueryOptions<WishlistDetailsVariables>
+  // ): ObservableQuery<WishlistDetails, any> =>
+  //   client.watchQuery({
+  //     query: gql`
+  //       ${Wishlist.wishlistDetails}
+  //     `,
+  //     ...options,
+  // }),
   OrdersByUser: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<OrdersByUserVariables>
@@ -122,6 +117,16 @@ export const QUERIES = {
       `,
       ...options,
     }),
+  // UserWishlistDetails: <TCacheShape>(
+  //   client: ApolloClient<TCacheShape>,
+  //   options: QueryOptions<null>
+  // ): ObservableQuery<UserWishlistDetails, any> =>
+  //   client.watchQuery({
+  //     query: gql`
+  //       ${Wishlist.userWishlistDetails}
+  //     `,
+  //     ...options,
+  // }),
   UserDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<null>
@@ -129,6 +134,26 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${User.getUserDetailsQuery}
+      `,
+      ...options,
+    }),
+  VariantsProducts: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<VariantsProductsVariables>
+  ): ObservableQuery<VariantsProducts, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Product.variantsProducts}
+      `,
+      ...options,
+    }),
+  Wishlist: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<WishlistVariables>
+  ): ObservableQuery<Wishlist, any> =>
+    client.watchQuery({
+      query: gql`
+        ${WishlistQuery.userWishlist}
       `,
       ...options,
     }),

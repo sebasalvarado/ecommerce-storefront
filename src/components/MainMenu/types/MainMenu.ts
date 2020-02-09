@@ -149,7 +149,7 @@ export interface MainMenu_shop_navigation_main_items {
   collection: MainMenu_shop_navigation_main_items_collection | null;
   page: MainMenu_shop_navigation_main_items_page | null;
   parent: MainMenu_shop_navigation_main_items_parent | null;
-  children?: any[];
+  children: (MainMenu_shop_navigation_main_items_children | null)[] | null;
 }
 
 export interface MainMenu_shop_navigation_main {

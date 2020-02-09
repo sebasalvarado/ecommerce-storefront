@@ -1,6 +1,5 @@
-import * as React from "react";
-
-import { maybe } from "@utils/tsUtils";
+import { maybe } from '@utils/tsUtils';
+import * as React from 'react';
 
 export const useHandlerWhenClickedOutside = (callback: () => void) => {
   const elementRef = React.useRef<HTMLDivElement>(null);

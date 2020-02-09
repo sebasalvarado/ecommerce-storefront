@@ -1,4 +1,4 @@
-import { queryFactory, queryWithVariablesFactory } from "./useQuery";
+import { queryFactory, queryWithVariablesFactory } from './useQuery';
 
 export const useProductDetails = queryWithVariablesFactory("getProductDetails");
 export const useProductList = queryWithVariablesFactory("getProductList");
@@ -10,6 +10,9 @@ export const useUserCheckout = queryFactory("getUserCheckout");
 export const useCheckoutDetails = queryWithVariablesFactory(
   "getCheckoutDetails"
 );
+// export const useWishlistDetails = queryWithVariablesFactory(
+//   "getWishlistDetails"
+// )
 
 export const useOrderDetails = queryWithVariablesFactory("getOrderDetails");
 export const useOrdersByUser = queryWithVariablesFactory("getOrdersByUser");
@@ -19,3 +22,9 @@ export const useCategoryDetails = queryWithVariablesFactory(
 );
 
 export const useAtrributes = queryWithVariablesFactory("getAttributes");
+
+export const useVariantsProducts = queryWithVariablesFactory(
+  "getVariantsProducts"
+);
+
+export const useUserWishlist = queryWithVariablesFactory("getUserWishlist");

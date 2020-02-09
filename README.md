@@ -1,8 +1,7 @@
-# Saleor Storefront
+# Ponti Rack Ecommerce (Front-End)
 
 ![1 copy 2x](https://user-images.githubusercontent.com/5421321/47798207-30aeea00-dd28-11e8-9398-3d8426836a83.png)
 
-_**Note:** This project is beta quality. We don't advise using it in production._
 
 A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://github.com/mirumee/saleor/).
 
@@ -45,6 +44,24 @@ Enter the project directory:
 
 ```
 cd saleor-storefront
+```
+
+#### Using stable release
+
+To use the official stable release, checkout to a release tag:
+
+```
+$ git checkout v0.7.0
+```
+
+See the list of all releases here: https://github.com/mirumee/saleor-storefront/releases/
+
+#### Using development version
+
+If you want to use the latest development version, checkout to the `master` branch:
+
+```
+$ git checkout master
 ```
 
 Install NPM dependencies:
