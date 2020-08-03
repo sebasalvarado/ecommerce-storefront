@@ -36,7 +36,7 @@ const Page: React.FC<{
         </div>
         <div className="home-page__categories__list">
           
-          {categories.edges.map(({ node: category }) => (
+          {categories && categories.edges.map(({ node: category }) => (
             <div key={category.id}>
               <Link
                 to={generateCategoryUrl(

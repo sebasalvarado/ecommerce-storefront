@@ -1,12 +1,9 @@
-import { Button, Carousel, Loader } from "../../../../components";
-import {
-    ProductsList_categories,
-    ProductsList_shop_homepageCollection_backgroundImage
-} from "../../types/ProductsList";
-
-import { Link } from "react-router-dom";
 import React from 'react';
-import { generateCategoryUrl } from "../../../../core/utils";
+import { Link } from 'react-router-dom';
+
+import { Button, Carousel, Loader } from '../../../../components';
+import { generateCategoryUrl } from '../../../../core/utils';
+import { ProductsList_categories, ProductsList_shop_homepageCollection_backgroundImage } from '../../types/ProductsList';
 
 interface HeroCarouselProps {
     categories: ProductsList_categories;
